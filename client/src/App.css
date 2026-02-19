@@ -1,10 +1,17 @@
 :root {
-  --color-orange: #feab5e;
-  --color-light-orange: #fcbf87;
+  --color-primary: #6366f1;
+  --color-primary-light: #a5b4fc;
+  --color-secondary: #8b5cf6;
   --color-grey: #707070;
-  --color-border-orange: #ffead7;
-  --color-green: #198754;
-  --color-red: #dc3545;
+  --color-border-light: #e0e7ff;
+  --color-green: #10b981;
+  --color-red: #ef4444;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --rounded-md: 0.375rem;
+  --rounded-lg: 0.5rem;
+  --rounded-xl: 0.75rem;
 }
 
 .container {
@@ -97,12 +104,18 @@ nav {
   align-items: center;
 }
 nav button {
-  border-radius: 30px;
-  background-color: white;
+  border-radius: var(--rounded-xl);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   padding: 8px 42px;
   border: none;
   outline: none;
   cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+nav button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
 }
 nav img {
   width: 55px;
@@ -114,8 +127,8 @@ nav .menu {
   position: relative;
 }
 nav .menu .dropdown {
-  background-color: var(--color-orange);
-  border: 1px solid white;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border: 1px solid var(--color-border-light);
   position: absolute;
   bottom: -116px;
   z-index: 1;
@@ -124,9 +137,10 @@ nav .menu .dropdown {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: var(--rounded-xl);
   display: none;
   gap: 5px;
+  box-shadow: var(--shadow-lg);
 }
 nav .menu .dropdown.active {
   display: flex;
@@ -161,7 +175,8 @@ nav a {
   border-radius: 10px;
 }
 nav button a {
-  color: var(--color-orange);
+  color: white;
+  font-weight: 600;
 }
 
 @media (max-width: 991px) {
@@ -196,7 +211,7 @@ nav button a {
     z-index: 2;
     width: 100%;
     height: 100%;
-    background-color: var(--color-orange);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -265,6 +280,11 @@ nav button a {
   font-size: 220%;
   width: 396px;
   margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 .Home .description p {
   width: 396px;
@@ -274,12 +294,19 @@ nav button a {
   cursor: pointer;
   outline: none;
   border: none;
-  border-radius: 30px;
-  background-color: var(--color-orange);
+  border-radius: var(--rounded-xl);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
-  padding: 10px 55px;
-  font-size: 20px;
+  padding: 14px 55px;
+  font-size: 18px;
+  font-weight: 600;
   margin-top: 25px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+.Home .description button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 .Home .hero {
   width: 58%;
@@ -309,9 +336,10 @@ nav button a {
 .Home .custom-headline {
   margin-top: 50px;
   font-weight: bold;
-  color: var(--color-orange);
-  font-size: 40px;
+  color: var(--color-primary);
+  font-size: 42px;
   text-align: center;
+  text-shadow: var(--shadow-sm);
 }
 .Home .service {
   margin-top: 50px;
@@ -379,22 +407,27 @@ nav button a {
 .Home .contact-us label {
   font-weight: bold;
   display: inline-block;
-  color: var(--color-orange);
+  color: var(--color-primary);
   width: 100%;
   text-align: left;
   margin-bottom: 8px;
 }
 .Home .contact-us input {
-  color: var(--color-orange);
+  color: var(--color-primary);
   outline: none;
   width: 90%;
   padding: 17px 20px;
-  background-color: var(--color-orange);
-  border: 2px solid var(--color-light-orange);
+  background-color: var(--color-primary-light);
+  border: 2px solid var(--color-border-light);
   color: white;
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: var(--rounded-lg);
   margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+.Home .contact-us input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
 }
 .Home .contact-us input::placeholder,
 .Home .contact-us textarea::placeholder {
@@ -406,38 +439,51 @@ nav button a {
   transition: 0.3s;
 }
 .Home .contact-us textarea {
-  color: var(--color-orange);
+  color: var(--color-primary);
   outline: none;
   max-width: 90%;
   min-height: 18px;
   padding: 17px 20px;
-  background-color: var(--color-orange);
-  border: 1px solid var(--color-light-orange);
+  background-color: var(--color-primary-light);
+  border: 1px solid var(--color-border-light);
   color: white;
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: var(--rounded-lg);
+  transition: all 0.3s ease;
+}
+.Home .contact-us textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
 }
 .Home .contact-us button {
   margin-top: 7px;
   cursor: pointer;
   outline: none;
   border: none;
-  border-radius: 30px;
-  background-color: var(--color-orange);
+  border-radius: var(--rounded-xl);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
-  padding: 10px 55px;
+  padding: 12px 55px;
   font-size: 16px;
+  font-weight: 600;
   margin-top: 25px;
   align-self: center;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+.Home .contact-us button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
 }
 
 .Home footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   margin-top: 50px;
   padding-bottom: 20px;
+  border-radius: var(--rounded-xl) var(--rounded-xl) 0 0;
 }
 .Home footer .footer-head {
   color: white;
@@ -786,8 +832,12 @@ nav button a {
   flex-direction: column;
 }
 .Signup section .signupForm .signupHeader {
-  color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 50px;
+  font-weight: 700;
 }
 .Signup section .inputs {
   text-align: center;
@@ -804,7 +854,7 @@ nav button a {
 }
 .Signup form label {
   display: inline-block;
-  color: var(--color-orange);
+  color: var(--color-primary);
   font-weight: bold;
   width: 100%;
   text-align: left;
@@ -866,7 +916,7 @@ nav button a {
 .Signup section span {
   font-size: 20px;
   margin-right: 62px;
-  color: var(--color-orange);
+  color: var(--color-primary);
 }
 .Signup .image {
   cursor: pointer;
@@ -948,7 +998,7 @@ nav button a {
   justify-content: space-between;
 }
 .FreelancerDashboard .serverStopped {
-  color: var(--color-orange);
+  color: var(--color-primary);
   font-size: 50px;
   text-align: center;
   font-weight: 700;
@@ -964,8 +1014,15 @@ nav button a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(21, 34, 50, 0.26) 10px 10px 20px;
-  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--rounded-xl);
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--color-border-light);
+}
+.FreelancerDashboard .stats .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
 }
 .FreelancerDashboard .stats .card .info {
   display: flex;
@@ -983,7 +1040,7 @@ nav button a {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background-color: var(--color-border-orange);
+  background-color: var(--color-border-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1027,7 +1084,7 @@ nav button a {
   gap: 15px;
 }
 .FreelancerDashboard .testimonials .cards .noTestimonials {
-  color: var(--color-orange);
+  color: var(--color-primary);
   font-size: 50px;
   text-align: center;
   font-weight: 700;
@@ -1041,14 +1098,15 @@ nav button a {
   padding: 13px 34px;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: var(--rounded-xl);
   width: 80%;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
   cursor: grab;
   height: 100%;
+  box-shadow: var(--shadow-lg);
 }
 .FreelancerDashboard .testimonials .cards .card img {
   width: 130px;
@@ -1139,11 +1197,17 @@ nav button a {
   padding: 16px 46px;
   width: 280px;
   color: white;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   font-size: 30px;
   outline: none;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+.FreelancerServices .buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 .FreelancerServices .services {
   display: flex;
@@ -1232,15 +1296,20 @@ nav button a {
   display: flex;
   align-items: center;
 }
-.FreelancerServices .services .service .rating-more button {
+.FreelancerServices .rating-more button {
   font-weight: bolder;
   cursor: pointer;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
   padding: 10px 20px;
   outline: none;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--rounded-lg);
+  transition: all 0.3s ease;
+}
+.FreelancerServices .rating-more button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 .FreelancerServices .services .service .rating svg {
   width: 24px;
@@ -1291,9 +1360,13 @@ nav button a {
 .FreelancerCreateService .createHeader {
   font-size: 50px;
   text-align: center;
-  color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-top: 20px;
   margin-bottom: 50px;
+  font-weight: 700;
 }
 .FreelancerCreateService form {
   width: 922px;
@@ -2143,25 +2216,33 @@ nav button a {
   cursor: pointer;
 }
 .ServiceDetail .testimonialForm form .testimonialHeader {
-  color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 29px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 .ServiceDetail .testimonialForm form .stars {
   width: 100%;
 }
 .ServiceDetail .testimonialForm form textarea {
-  color: var(--color-orange);
+  color: var(--color-primary);
   outline: none;
   max-width: 320px;
   min-height: 18px;
   padding: 17px 20px;
-  background-color: var(--color-orange);
-  border: 1px solid var(--color-light-orange);
+  background-color: var(--color-primary-light);
+  border: 1px solid var(--color-border-light);
   color: white;
   font-size: 18px;
-  border-radius: 10px;
+  border-radius: var(--rounded-lg);
+  transition: all 0.3s ease;
+}
+.ServiceDetail .testimonialForm form textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
 }
 .ServiceDetail .testimonialForm form textarea::placeholder {
   color: white;
@@ -2183,13 +2264,20 @@ nav button a {
   cursor: pointer;
   outline: none;
   border: none;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
-  padding: 10px 55px;
+  padding: 12px 55px;
   font-size: 16px;
+  font-weight: 600;
   margin-top: 25px;
-  border-radius: 10px;
+  border-radius: var(--rounded-lg);
   width: 195px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+.ServiceDetail button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
 }
 .ServiceDetail .swiper-container {
   width: 100%;
@@ -2325,8 +2413,15 @@ nav button a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(21, 34, 50, 0.26) 10px 10px 20px;
-  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--rounded-xl);
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--color-border-light);
+}
+.ClientDashboard .stats .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
 }
 .ClientDashboard .stats .card .info {
   display: flex;
@@ -2344,7 +2439,7 @@ nav button a {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background-color: var(--color-border-orange);
+  background-color: var(--color-border-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2377,7 +2472,7 @@ nav button a {
   margin-top: 30px;
 }
 .ClientDashboard .serverStopped {
-  color: var(--color-orange);
+  color: var(--color-primary);
   font-size: 50px;
   text-align: center;
   font-weight: 700;
@@ -2388,7 +2483,7 @@ nav button a {
   width: 100%;
 }
 .ClientDashboard .testimonials .cards .noTestimonials {
-  color: var(--color-orange);
+  color: var(--color-primary);
   font-size: 50px;
   text-align: center;
   font-weight: 700;
@@ -2412,14 +2507,15 @@ nav button a {
   padding: 13px 34px;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: var(--rounded-xl);
   width: 80%;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
   cursor: grab;
   height: 100%;
+  box-shadow: var(--shadow-lg);
 }
 .ClientDashboard .testimonials .cards .card img {
   width: 130px;
@@ -2453,7 +2549,7 @@ nav button a {
   min-height: calc(100vh - 273px);
 }
 .ClientServices .noServices {
-  color: var(--color-orange);
+  color: var(--color-primary);
   font-size: 50px;
   text-align: center;
   font-weight: 700;
@@ -2475,13 +2571,14 @@ nav button a {
   padding: 10px 20px 10px 32px;
   width: 229px;
   color: white;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   font-size: 20px;
   outline: none;
   border: none;
-  border-radius: 10px;
-  border-right: 15px solid var(--color-orange);
+  border-radius: var(--rounded-lg);
+  border-right: 15px solid var(--color-primary);
   text-align: center;
+  box-shadow: var(--shadow-md);
 }
 .ClientServices .buttons select option {
   text-align: center;
@@ -2594,10 +2691,10 @@ nav button a {
 /* Start of Slider arrows and pagination color */
 .swiper-button-next:after,
 .swiper-button-prev:after {
-  color: var(--color-orange);
+  color: var(--color-primary);
 }
 .swiper-pagination-clickable .swiper-pagination-bullet {
-  background-color: var(--color-orange);
+  background-color: var(--color-primary);
 }
 /* End Of Slider arrows and pagination color */
 
@@ -2768,12 +2865,18 @@ nav button a {
 .ClientOrders .services .service .rating-more button {
   font-weight: bolder;
   cursor: pointer;
-  background-color: var(--color-orange);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
   padding: 10px 20px;
   outline: none;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+.ClientOrders .services .service .rating-more button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
 }
 .ClientOrders .services .service .rating svg {
   width: 24px;
